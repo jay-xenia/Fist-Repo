@@ -1,0 +1,19 @@
+add_filter("woocommerce_checkout_fields", "order_billing_fields");
+function order_billing_fields($fields) {
+    $order = array(
+        "billing_first_name", 
+        "billing_last_name", 
+        "billing_address_1", 
+        "billing_city", 
+        "billing_postcode", 
+        "billing_address_2", 
+        "billing_phone",
+        "billing_email", 
+    );
+    foreach($order as $field)
+    {
+        $ordered_fields[$field] = $fields["billing"][$field];
+    }
+    $fields["billing"] = $ordered_fields;
+    return $fields;
+}
